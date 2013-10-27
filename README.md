@@ -33,3 +33,5 @@ WorkQueues Example
 * This program mimics messages being sent that take a bit longer to process. Each '.' in the message causes the running thread to sleep for one second. 
 
 * Messages are sent asynchronously so if you only start NewTask (which publishes some messages), then later on start the Worker (which consumes the messages), the worker will get the messages (as long as the server has not been stopped in between).
+
+* If multiple workers are running, RabbitMQ will route the message received to the next available Consumer, in a Round-Robin way.
