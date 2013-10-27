@@ -12,6 +12,8 @@ To stop the sever running use rabbitmqctl.bat stop.
 
 Note: By default RabbitMQ will install as a Service so it will be set to run all the time. You can change this through your ControlPanel so that you can start it on demand only.
 
+This repository goes through the tutorials detailed at : http://www.rabbitmq.com/getstarted.html to enable me to get the look and feel of this API.
+
 
 HelloWorld Example
 ------------------
@@ -25,3 +27,9 @@ HelloWorld Example
 * The sender will publish a message (byte[]) onto the queue.
 
 * The receiver has a Consumer which is listening to the same queue and obtains the message by calling nextDelivery(). From this it can extract the byte[] which is the message.
+
+WorkQueues Example
+------------------
+* This program mimics messages being sent that take a bit longer to process. Each '.' in the message causes the running thread to sleep for one second. 
+
+* Messages are sent asynchronously so if you only start NewTask (which publishes some messages), then later on start the Worker (which consumes the messages), the worker will get the messages (as long as the server has not been stopped in between).
