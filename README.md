@@ -35,3 +35,5 @@ WorkQueues Example
 * Messages are sent asynchronously so if you only start NewTask (which publishes some messages), then later on start the Worker (which consumes the messages), the worker will get the messages (as long as the server has not been stopped in between).
 
 * If multiple workers are running, RabbitMQ will route the message received to the next available Consumer, in a Round-Robin way.
+
+* To preserve the messages on the queue even if the RabbitMQ server goes down, the durable parameter on the queueDeclare method must be set to true. Additionally when the messages are published, they must be set as persistant. This is acheived through the MessageProperty.PERSIST_AS_TEXT_MESSAGE property passed into the basicPublish method on the Channel.
