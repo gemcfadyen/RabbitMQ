@@ -17,7 +17,6 @@ This repository goes through the tutorials detailed at : http://www.rabbitmq.com
 
 HelloWorld Example
 ------------------
-
 * The Sender or Receiver can be started in any order.
 * Because of this, both must go through the motion of creating a connection factory and a queue. 
 * RabbitMQ will only create this actual queue if it doesnt already exist.
@@ -37,3 +36,11 @@ WorkQueues Example
 * If multiple workers are running, RabbitMQ will route the message received to the next available Consumer, in a Round-Robin way.
 
 * To preserve the messages on the queue even if the RabbitMQ server goes down, the durable parameter on the queueDeclare method must be set to true. Additionally when the messages are published, they must be set as persistant. This is acheived through the MessageProperty.PERSIST_AS_TEXT_MESSAGE property passed into the basicPublish method on the Channel.
+
+PubSub Example
+--------------
+* So that multiple consumers can get a message, an exchange must be used.
+* When using the exchange, each Consumer dynamically creates a queue bound to the exchange where the messages are being sent.
+* When that consumer stops listening, the dynamic queue is automatically deleted.
+* To see a list of exchange bindings use the command rabbitmqctl.bat list_bindings
+* To see the behaviour, run several Subscribers, then run the Publisher. You will observe that each subscriber receives the message that has been sent.

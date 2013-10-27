@@ -27,9 +27,16 @@ public class NewTask {
 		 * RabbitMQ will route the next message to the next free Consumer.
 		 */
 		for (String individualMessage : messagesThatTakeSomeTimeToProcess) {
-			channel.basicPublish("", WORK_QUEUE, MessageProperties.PERSISTENT_TEXT_PLAIN, individualMessage.getBytes());
+			channel.basicPublish(defaultExchange(), WORK_QUEUE, MessageProperties.PERSISTENT_TEXT_PLAIN, individualMessage.getBytes());
 			System.out.println("[x] sent '" + individualMessage + "'");
 		}
+		
+		channel.close();
+		connection.close();
+	}
+
+	private static String defaultExchange() {
+		return "";
 	}
 
 	private static boolean isADurable() {

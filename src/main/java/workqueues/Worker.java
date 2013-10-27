@@ -33,6 +33,7 @@ public class Worker {
 		QueueingConsumer consumer = new QueueingConsumer(channel);
 		
 		channel.basicConsume(WORK_QUEUE, isNotConfiguredToRedistributeMessagesIfWorkerGoesDown(), consumer); 
+		//This Qos property allocates the next message to the next free Worker
 		channel.basicQos(1);
 		
 		while (true) {

@@ -17,11 +17,15 @@ public class Send {
 
 		for (int messages = 0; messages < 10; messages++) {
 			String message = "Hello World! " + messages;
-			channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+			channel.basicPublish(defaultExchange(), QUEUE_NAME, null, message.getBytes());
 			System.out.println(" [x] Sent '" + message + "'");
 		}
 		channel.close();
 		connection.close();
+	}
+
+	private static String defaultExchange() {
+		return "";
 	}
 
 }
