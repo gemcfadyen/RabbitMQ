@@ -44,3 +44,10 @@ PubSub Example
 * When that consumer stops listening, the dynamic queue is automatically deleted.
 * To see a list of exchange bindings use the command rabbitmqctl.bat list_bindings
 * To see the behaviour, run several Subscribers, then run the Publisher. You will observe that each subscriber receives the message that has been sent.
+
+
+Routing Example
+---------------
+* A Routing key is used so that multiple consumers can listen to an exchange for messages, but be selective about the messages they receive.
+* Similar to the last example, if several Receivers are running, they will all receive the messages that match their routing key.
+* One queue can have several routing keys bound to it. For example in ReceiveLowPriority.java - the routing keys 'low' and 'none' are bound. 
